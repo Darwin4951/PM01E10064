@@ -1,0 +1,30 @@
+<resources>
+    <style name="Base.Theme.GestionDeContactos" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/contact_blue</item>
+        <item name="colorOnPrimary">@color/contact_white</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">@color/contact_background</item>
+        <item name="android:colorAccent">@color/contact_blue</item>
+    </style>
+    <style name="Theme.GestionDeContactos" parent="Base.Theme.GestionDeContactos" />
+    <style name="ContactLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@color/contact_text</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ContactInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">54dp</item>
+        <item name="android:background">@drawable/bg_input</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@color/contact_text</item>
+        <item name="android:textColorHint">@color/contact_hint</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>

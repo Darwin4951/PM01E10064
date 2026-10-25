@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Gestión de contactos</string>
+    <string name="nuevo_contacto">Nuevo contacto</string>
+    <string name="actualizar_contacto">Actualizar contacto</string>
+    <string name="agregar_imagen">Agregar imagen</string>
+    <string name="pais">País</string>
+    <string name="nombre">Nombre</string>
+    <string name="telefono">Teléfono</string>
+    <string name="nota">Nota</string>
+    <string name="nombre_hint">Ej. Ana López</string>
+    <string name="telefono_hint">Ej. 9876 5432</string>
+    <string name="nota_hint">Ej. Compañera de clase</string>
+    <string name="guardar_contacto">Guardar contacto</string>
+    <string name="ver_contactos">Ver contactos</string>
+    <string-array name="paises">
+        <item>Honduras (+504)</item><item>Costa Rica (+506)</item>
+        <item>Guatemala (+502)</item><item>El Salvador (+503)</item>
+        <item>Nicaragua (+505)</item><item>Panamá (+507)</item>
+    </string-array>
+</resources>

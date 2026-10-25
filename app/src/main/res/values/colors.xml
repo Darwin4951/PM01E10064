@@ -1,0 +1,8 @@
+<resources>
+    <color name="contact_blue">#0D47A1</color>
+    <color name="contact_white">#FFFFFF</color>
+    <color name="contact_background">#F8F9FA</color>
+    <color name="contact_text">#172B4D</color>
+    <color name="contact_hint">#68778D</color>
+    <color name="contact_border">#D9E1ED</color>
+</resources>
