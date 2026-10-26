@@ -1,11 +1,14 @@
 <resources>
     <style name="Base.Theme.GestionDeContactos" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/contact_blue</item>
+        <item name="colorPrimary">@color/contact_green</item>
+        <item name="colorSecondary">@color/contact_green</item>
+        <item name="colorSecondaryContainer">@color/contact_light_green</item>
+        <item name="colorOnSecondaryContainer">@color/contact_text</item>
         <item name="colorOnPrimary">@color/contact_white</item>
         <item name="android:fontFamily">sans</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowBackground">@color/contact_background</item>
-        <item name="android:colorAccent">@color/contact_blue</item>
+        <item name="android:colorAccent">@color/contact_green</item>
     </style>
     <style name="Theme.GestionDeContactos" parent="Base.Theme.GestionDeContactos" />
     <style name="ContactLabel">

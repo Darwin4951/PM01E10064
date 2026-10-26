@@ -74,14 +74,21 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 return;
             }
-            etNombre.setText(getIntent().getStringExtra("nombre"));
-            etTelefono.setText(getIntent().getStringExtra("telefono"));
-            etNota.setText(getIntent().getStringExtra("nota"));
-            String pais = getIntent().getStringExtra("pais");
+            Contactos actual;
+            try { actual = conexion.obtenerContacto(contactoId); }
+            catch (SQLiteException e) { actual = null; }
+            if (actual == null) {
+                Toast.makeText(this, "No se pudo cargar el contacto", Toast.LENGTH_LONG).show();
+                finish(); return;
+            }
+            etNombre.setText(actual.getNombre());
+            etTelefono.setText(actual.getTelefono());
+            etNota.setText(actual.getNota());
+            String pais = actual.getPais();
             for (int i = 0; i < adapter.getCount(); i++) {
                 if (adapter.getItem(i).toString().equals(pais)) spPais.setSelection(i);
             }
-            imagen = getIntent().getStringExtra("imagen");
+            imagen = actual.getImagen();
         }
         if (savedInstanceState != null) imagen = savedInstanceState.getString("imagen_formulario", "");
         mostrarImagen();
@@ -146,9 +153,11 @@ public class MainActivity extends AppCompatActivity {
             while (Math.max(bounds.outWidth, bounds.outHeight) / bounds.inSampleSize > 1024) bounds.inSampleSize *= 2;
             bounds.inJustDecodeBounds = false;
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, bounds);
-            if (bitmap != null) establecerImagen(bitmap);
-            else imagen = "";
-        } catch (IllegalArgumentException e) { imagen = ""; }
+            if (bitmap != null) {
+                ivImagen.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                ivImagen.setImageBitmap(bitmap);
+            }
+        } catch (IllegalArgumentException e) { /* Conservar el valor almacenado. */ }
     }
 
     private void guardar() {
@@ -166,7 +175,13 @@ public class MainActivity extends AppCompatActivity {
         }
         Contactos contacto = new Contactos(modoEditar ? contactoId : null, spPais.getSelectedItem().toString(), nombre, telefono, nota, imagen);
         try {
-            boolean exito = modoEditar ? conexion.actualizarContacto(contacto) > 0 : conexion.insertarContacto(contacto) != -1;
+            boolean exito;
+            // Editar modifica la fila por ID; registrar crea una fila nueva.
+            if (modoEditar) {
+                exito = conexion.actualizarContacto(contacto) > 0;
+            } else {
+                exito = conexion.insertarContacto(contacto) != -1;
+            }
             if (!exito) { alerta("No se pudo guardar el contacto"); return; }
             Toast.makeText(this, modoEditar ? "Contacto actualizado correctamente" : "Contacto guardado correctamente", Toast.LENGTH_SHORT).show();
             if (modoEditar) { setResult(RESULT_OK); finish(); }

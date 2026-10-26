@@ -35,6 +35,14 @@ public class SQLiteConexion extends SQLiteOpenHelper {
         }
         return contactos;
     }
+    public Contactos obtenerContacto(int id) {
+        try (Cursor c = getReadableDatabase().query("contactos", new String[]{"id", "pais", "nombre", "telefono", "nota", "imagen"}, "id = ?", new String[]{String.valueOf(id)}, null, null, null)) {
+            if (c.moveToFirst()) {
+                return new Contactos(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getString(4), c.getString(5));
+            }
+            return null;
+        }
+    }
     public int eliminarContacto(int id) {
         return getWritableDatabase().delete("contactos", "id = ?", new String[]{String.valueOf(id)});
     }
